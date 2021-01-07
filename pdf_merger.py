@@ -117,7 +117,8 @@ def main():
     except WindowsError:
         email_body = "Hello,\n\n" \
                      "PDF Merging failed\n" \
-                     "The directory cannot be accessed. Please put the folders in another directory and re-send the email!\n\n" \
+                     f"The directory cannot be accessed. [{root_path}] \n" \
+                     "Please put the folders in another directory and re-send the email!\n\n" \
                      "Best Regards,\n" \
                      "Graham Automation"
         email_auto_script([email_from[0][1]],"PDF_Merge Error", email_body,file_path=[])
