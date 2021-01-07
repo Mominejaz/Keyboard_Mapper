@@ -80,7 +80,7 @@ def main():
                         time.sleep(2)
                     pdf_merger(root_path)
     print('Script Finished running!!!')
-    # time.sleep(120)
+    time.sleep(30)
 
 if __name__ == '__main__':
     main()
