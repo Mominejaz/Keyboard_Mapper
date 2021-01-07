@@ -77,6 +77,7 @@ def main():
                 else:
                     for folder in folder_list:
                         pdf_merger(folder)
+                        time.sleep(2)
                     pdf_merger(root_path)
     print('Script Finished running!!!')
     # time.sleep(120)
