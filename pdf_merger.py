@@ -1,17 +1,7 @@
 import imaplib
-import base64
 import os
 import email
-import smtplib
-from email.mime.multipart import MIMEMultipart
-from email.mime.text import MIMEText
-from email.mime.base import MIMEBase
-from email import encoders
-# import pypdftk
 import time
-import sys
-# from pdf2image import pdf2image
-from datetime import datetime
 import glob
 import mailparser
 from PyPDF2 import PdfFileMerger
@@ -80,7 +70,7 @@ def main():
                         time.sleep(2)
                     pdf_merger(root_path)
     print('Script Finished running!!!')
-    time.sleep(30)
+    time.sleep(15)
 
 if __name__ == '__main__':
     main()
