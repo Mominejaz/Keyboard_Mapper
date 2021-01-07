@@ -35,11 +35,14 @@ def pdf_merger(input_path):
         folder_name = folder_name[-1]
         merged_file_name = input_path + '\\' + folder_name + '.pdf'
         pdf_list = glob.glob(f'{input_path}/*.pdf')
-        pdf_list.sort()
-
-        merger(merged_file_name, pdf_list)
+        if pdf_list == []:
+            raise Exception
+        else:
+            pdf_list.sort()
+            merger(merged_file_name, pdf_list)
+            print(f'Merged PDF: {merged_file_name}')
     except:
-        pass
+        print('No pdf to merge!')
 
 def fast_scandir(dirname):
     subfolders= [f.path for f in os.scandir(dirname) if f.is_dir()]
@@ -73,75 +76,9 @@ def main():
                     pdf_merger(root_path)
                 else:
                     for folder in folder_list:
-                        folder_path = root_path+'\\'+folder
-                        pdf_merger(folder_path)
-    # 
-    # 
-    #             # instance of MIMEMultipart
-    #             msg = MIMEMultipart()
-    # 
-    #             # storing the senders email address
-    #             msg['From'] = email_user
-    # 
-    #             # storing the receivers email address
-    #             msg['To'] = toaddr
-    # 
-    #             # storing the subject
-    #             msg['Subject'] = "{} - Merged and Flattened PDF at {}".format(tosubject, current_time)
-    # 
-    #             # string to store the body of the mail
-    #             body = "Please view the attached PDF generated at {}.".format(current_time)
-    # 
-    #             # attach the body with the msg instance
-    #             msg.attach(MIMEText(body, 'plain'))
-    # 
-    #             # open the file to be sent
-    #             attachment = open(merged_file, "rb")
-    # 
-    #             # instance of MIMEBase and named as p
-    #             p = MIMEBase('application', 'octet-stream')
-    # 
-    #             # To change the payload into encoded form
-    #             p.set_payload((attachment).read())
-    # 
-    #             # encode into base64
-    #             encoders.encode_base64(p)
-    # 
-    #             p.add_header('Content-Disposition', "attachment; filename= %s" % merged_file_name)
-    # 
-    #             # attach the instance 'p' to instance 'msg'
-    #             msg.attach(p)
-    # 
-    #             # creates SMTP session
-    #             s = smtplib.SMTP('smtp.gmail.com', 587)
-    # 
-    #             # start TLS for security
-    #             s.starttls()
-    # 
-    #             # Authentication
-    #             s.login(email_user, email_pw)
-    # 
-    #             # Converts the Multipart msg into a string
-    #             text = msg.as_string()
-    # 
-    #             # sending the mail
-    #             s.sendmail(email_user, toaddr, text)
-    # 
-    #             # terminating the session
-    #             s.quit()
-    # 
-    #             attachment.close()
-    # 
-    #             os.remove(merged_file)
-    # 
-    #             files_list = []
-    #             files_list_unspaced = []
-    #             files_list_flattened = []
-    #             bad_files_list = []
-    # tosubject = ''
-    # toaddr = ''
-    # mail.close()
-    print('Merged PDFs!!!')
+                        pdf_merger(folder)
+                    pdf_merger(root_path)
+    print('Script Finished running!!!')
     # time.sleep(120)
 
 if __name__ == '__main__':
